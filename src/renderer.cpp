@@ -43,7 +43,8 @@ void Renderer::ClearScreen(){
   SDL_RenderClear(sdl_renderer);
 }
 
-void Renderer::RenderFood(SDL_Point const &food){
+//void Renderer::RenderFood(SDL_Point const &food){
+void Renderer::RenderFood(SDL_Point food){
 
   SDL_Rect block;
   block.w = screen_width / grid_width;
