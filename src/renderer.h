@@ -12,7 +12,8 @@ class Renderer {
   ~Renderer();
 
   void RenderSnake(Snake const snake);
-  void RenderFood(SDL_Point const &food);
+  //void RenderFood(SDL_Point const &food);
+ void RenderFood(SDL_Point food);
   void ClearScreen();
   void UpdateWindowTitle(int score1, int score2, int fps);
 
