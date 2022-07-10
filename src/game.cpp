@@ -36,12 +36,12 @@ void Game::Run(Controller const &controller,
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, snake1, snake2);
     Update();
-    renderer.RenderFood(food);
+    //renderer.RenderFood(food);
+    std::thread food_thread (renderer.RenderFood, food);
     renderer.RenderSnake(snake1);
+    //std::thread snake1_thread = std::thread(renderer.RenderSnake, snake1);
     renderer.RenderSnake(snake2);
-    //std::thread food_thread (renderer.RenderFood(food));
-    //std::thread food_thread (renderer.RenderSnake(snake1));
-    //std::thread food_thread (renderer.RenderSnake(snake2));
+    //std::thread snake2_thread = std::thread(renderer.RenderSnake, snake2);
     renderer.ClearScreen();
 
     frame_end = SDL_GetTicks();
