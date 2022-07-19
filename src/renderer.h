@@ -1,3 +1,9 @@
+/*
+Author: Baruch Chau
+Description: Modified from the sample code given by Udacity.
+Header code for the renderer class. 
+*/
+
 #ifndef RENDERER_H
 #define RENDERER_H
 
@@ -11,11 +17,10 @@ class Renderer {
            const std::size_t grid_width, const std::size_t grid_height);
   ~Renderer();
 
-  void RenderSnake(Snake const snake);
-  //void RenderFood(SDL_Point const &food);
- void RenderFood(SDL_Point food);
+  void RenderSnake(Snake const &snake);
+  void RenderFood(SDL_Point const &food);
   void ClearScreen();
-  void UpdateWindowTitle(int score1, int score2, int fps);
+  void UpdateWindowTitle(int *score1, int *score2, int *fps);
 
  private:
   SDL_Window *sdl_window;

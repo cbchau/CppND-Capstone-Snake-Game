@@ -1,3 +1,12 @@
+/*
+Author:Baruch Chau
+Description: Modified from the sample code given by Udacity.
+This class handles the rendering of the food, snakes, and window.
+The Screen_Clear class and RenderFood classes were split from the original Render class.
+The Render class has become the RenderSnake class and handles only rendering the snake.
+Depending on the player, the snake has a different color. 
+*/
+
 #include "renderer.h"
 #include <iostream>
 #include <string>
@@ -43,16 +52,11 @@ void Renderer::ClearScreen(){
   SDL_RenderClear(sdl_renderer);
 }
 
-//void Renderer::RenderFood(SDL_Point const &food){
-void Renderer::RenderFood(SDL_Point food){
+void Renderer::RenderFood(SDL_Point const &food){
 
   SDL_Rect block;
   block.w = screen_width / grid_width;
   block.h = screen_height / grid_height;
-
-  // Clear screen
-  //SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
-  //SDL_RenderClear(sdl_renderer);
 
   // Render food
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
@@ -64,15 +68,11 @@ void Renderer::RenderFood(SDL_Point food){
   SDL_RenderPresent(sdl_renderer);
 }
 
-void Renderer::RenderSnake(Snake const snake) {
+void Renderer::RenderSnake(Snake const &snake) {
 
   SDL_Rect block;
   block.w = screen_width / grid_width;
   block.h = screen_height / grid_height;
-
-  // Clear screen
-  //SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
-  //SDL_RenderClear(sdl_renderer);
 
   // Render snake's body
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -87,10 +87,9 @@ void Renderer::RenderSnake(Snake const snake) {
   block.y = static_cast<int>(snake.head_y) * block.h;
   if (snake.alive) {
     if (snake.player == 1)
-      //SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0x7A, 0xCC, 0xFF);
-      SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0x00, 0xCC, 0xFF);
+      SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0x00, 0xCC, 0xFF); //Blue
     else
-      SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0xCC, 0x00, 0xFF);
+      SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0xCC, 0x00, 0xFF); //Green
   } else {
     SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x00, 0x00, 0xFF);
   }
@@ -100,7 +99,7 @@ void Renderer::RenderSnake(Snake const snake) {
   SDL_RenderPresent(sdl_renderer);
 }
 
-void Renderer::UpdateWindowTitle(int score1, int score2, int fps) {
-  std::string title{"Snake1 Score: " + std::to_string(score1) + " Snake2 Score: " + std::to_string(score2) + " FPS: " + std::to_string(fps)};
+void Renderer::UpdateWindowTitle(int *score1, int *score2, int *fps) {
+  std::string title{"Snake1 Score: " + std::to_string(*score1) + " Snake2 Score: " + std::to_string(*score2) + " FPS: " + std::to_string(*fps)};
   SDL_SetWindowTitle(sdl_window, title.c_str());
 }

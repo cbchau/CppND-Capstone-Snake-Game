@@ -1,3 +1,9 @@
+/*
+Author: Baruch Chau
+Description: Modified from the sample code provided by Udacity.
+This class contains all the attributes which define the snake. 
+*/
+
 #include "snake.h"
 #include <cmath>
 #include <iostream>
@@ -54,24 +60,17 @@ void Snake::UpdateBody(SDL_Point &current_head_cell, SDL_Point &prev_head_cell) 
     growing = false;
     size++;
   }
-
-  // Check if the snake has died.
-  for (auto const &item : body) {
-    if (current_head_cell.x == item.x && current_head_cell.y == item.y) {
-      alive = false;
-    }
-  }
 }
 
 void Snake::GrowBody() { growing = true; }
 
 // Inefficient method to check if cell is occupied by snake.
-bool Snake::SnakeCell(int x, int y) {
-  if (x == static_cast<int>(head_x) && y == static_cast<int>(head_y)) {
+bool Snake::SnakeCell(int *x, int *y) {
+  if (*x == static_cast<int>(head_x) && *y == static_cast<int>(head_y)) {
     return true;
   }
   for (auto const &item : body) {
-    if (x == item.x && y == item.y) {
+    if (*x == item.x && *y == item.y) {
       return true;
     }
   }

@@ -1,7 +1,14 @@
+/*
+Author: Baruch Chau
+Description: Modified from the sample code given by Udacity.
+Header code for the Snake class. 
+Included player enumeration to indentify the snakes.
+*/
 #ifndef SNAKE_H
 #define SNAKE_H
 
 #include <vector>
+#include <iostream>
 #include "SDL.h"
 
 class Snake {
@@ -22,7 +29,7 @@ class Snake {
 
   void Update();
   void GrowBody();
-  bool SnakeCell(int x, int y);
+  bool SnakeCell(int *x, int *y);
 
   //Direction direction = Direction::kUp;
   Direction direction;

@@ -1,3 +1,10 @@
+/*
+Author: Baruch Chau
+Description: Modified from the sample code given by Udacity
+This class is to provide parsing for key inputs to pilot the two snakes in the main game code.
+The ChangeDirection class prevents the snake from going backwards if snake consists more than just a head.
+The HandleInput class monitors the key presses from the keyboard. WASD button inputs were added to include a player 2.
+*/
 #include "controller.h"
 #include <iostream>
 #include "SDL.h"
@@ -9,7 +16,7 @@ void Controller::ChangeDirection(Snake &snake, Snake::Direction input,
   return;
 }
 
-void Controller::HandleInput(bool &running, Snake &snake1, Snake &snake2) const {
+void Controller::HandleInput(bool &running, Snake &snake1, Snake &snake2) const{
   SDL_Event e;
   while (SDL_PollEvent(&e)) {
     if (e.type == SDL_QUIT) {
@@ -37,7 +44,7 @@ void Controller::HandleInput(bool &running, Snake &snake1, Snake &snake2) const 
                           Snake::Direction::kLeft);
           break;
 
-        // Player 2 commands
+        // Player 2 commands, added as inputs
         case SDLK_w:
           ChangeDirection(snake2, Snake::Direction::kUp,
                           Snake::Direction::kDown);
